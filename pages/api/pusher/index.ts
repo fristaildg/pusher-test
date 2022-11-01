@@ -10,9 +10,8 @@ export const pusher = new Pusher({
 });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log(req.body);
-  const { message, sender } = req.body;
-  const response = await pusher.trigger('chat', 'chat-event', {
+  const { message, sender, channelName } = req.body;
+  const response = await pusher.trigger(channelName, 'chat-event', {
     message,
     sender,
   });
